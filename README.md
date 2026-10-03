@@ -17,10 +17,10 @@ Most signatures are generated autonomously by **ARPSyndicate's Vulnerability & E
 <!-- STATS:START -->
 | | Suricata | Nuclei |
 | --- | ---: | ---: |
-| **CVEs covered** | 7,502 | 0 |
-| **Signatures** | 7,800 rules | 0 templates |
+| **CVEs covered** | 7,502 | 1 |
+| **Signatures** | 7,800 rules | 1 templates |
 
-**7,502 unique CVEs** across both formats.
+**7,503 unique CVEs** across both formats.
 
 <details>
 <summary>Coverage by CVE year</summary>
@@ -54,6 +54,7 @@ Most signatures are generated autonomously by **ARPSyndicate's Vulnerability & E
 | 2023 | 717 | 727 | 0 |
 | 2024 | 726 | 743 | 0 |
 | 2025 | 443 | 453 | 0 |
+| 2026 | 0 | 0 | 1 |
 
 </details>
 <!-- STATS:END -->

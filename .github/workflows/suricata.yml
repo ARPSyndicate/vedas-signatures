@@ -33,7 +33,7 @@ jobs:
       # Maintainer-only label: allows new SIDs in the VEDAS generator range.
       ALLOW_VEDAS_SIDS: ${{ contains(github.event.pull_request.labels.*.name, 'vedas-generated') }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
 

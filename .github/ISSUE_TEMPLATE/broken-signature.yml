@@ -1,0 +1,46 @@
+name: Broken signature
+description: A rule or template fails to load, raises engine warnings, or is too slow.
+title: "[BROKEN] CVE-YYYY-NNNNN: "
+labels: ["broken", "triage"]
+body:
+  - type: dropdown
+    id: format
+    attributes:
+      label: Signature type
+      options: [Suricata rule, Nuclei template]
+    validations:
+      required: true
+  - type: input
+    id: ident
+    attributes:
+      label: SID or file path
+      placeholder: "sid:1000923 or nuclei/2024/CVE-2024-0012.yaml"
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Problem
+      options:
+        - Fails to load / parse error
+        - Engine warning
+        - Performance (rule profiling, slow template)
+        - Wrong metadata (CVE, msg, severity, references)
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: output
+    attributes:
+      label: Engine output
+      description: The exact error/warning, or the rule profiling numbers.
+      render: text
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Engine version
+      placeholder: Suricata 8.0.7 / Nuclei v3.11.1
+    validations:
+      required: true

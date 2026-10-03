@@ -1,0 +1,45 @@
+name: False negative
+description: A rule or template misses real exploitation or a vulnerable target.
+title: "[FN] CVE-YYYY-NNNNN: "
+labels: ["false-negative", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please share only what you are allowed to share, and **redact** sensitive data.
+  - type: dropdown
+    id: format
+    attributes:
+      label: Signature type
+      options: [Suricata rule, Nuclei template]
+    validations:
+      required: true
+  - type: input
+    id: cve
+    attributes:
+      label: CVE ID
+      placeholder: CVE-2024-0012
+    validations:
+      required: true
+  - type: input
+    id: ident
+    attributes:
+      label: SID or file path (if a signature exists)
+  - type: textarea
+    id: what
+    attributes:
+      label: What was missed
+      description: The exploit variant, endpoint or product version the signature does not catch.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: Public PoC / advisory link, redacted request, or attach a pcap of the exploit attempt.
+      render: text
+  - type: input
+    id: version
+    attributes:
+      label: Engine version
+      placeholder: Suricata 8.0.7 / Nuclei v3.11.1

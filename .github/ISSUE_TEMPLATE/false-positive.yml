@@ -1,0 +1,54 @@
+name: False positive
+description: A rule or template fires on benign traffic or a non-vulnerable target.
+title: "[FP] CVE-YYYY-NNNNN: "
+labels: ["false-positive", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting! Please **redact** hostnames, IPs, credentials and any customer data before pasting traffic or output.
+  - type: dropdown
+    id: format
+    attributes:
+      label: Signature type
+      options: [Suricata rule, Nuclei template]
+    validations:
+      required: true
+  - type: input
+    id: cve
+    attributes:
+      label: CVE ID
+      placeholder: CVE-2024-0012
+    validations:
+      required: true
+  - type: input
+    id: ident
+    attributes:
+      label: SID or file path
+      description: The Suricata `sid`, or the path of the Nuclei template.
+      placeholder: "sid:1000923 or nuclei/2024/CVE-2024-0012.yaml"
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What triggered it
+      description: Describe the benign traffic or target, and why it is not exploitation / not vulnerable.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: Redacted HTTP request/response, alert JSON (eve.json), nuclei output, or attach a redacted pcap.
+      render: text
+  - type: input
+    id: version
+    attributes:
+      label: Engine version
+      placeholder: Suricata 8.0.7 / Nuclei v3.11.1
+  - type: textarea
+    id: fix
+    attributes:
+      label: Suggested fix (optional)
+      description: A tighter match, extra content, or a different buffer. A PR is even better!

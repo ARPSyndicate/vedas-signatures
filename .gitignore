@@ -1,2 +1,17 @@
-*.sh
-*.py
+# Private VEDAS generator / helper scripts kept at the repository root.
+/*.py
+/*.sh
+
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Local test artefacts
+*.pcap
+*.pcapng
+eve.json
+fast.log
+suricata.log
+stats.log
+.DS_Store

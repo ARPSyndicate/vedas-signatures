@@ -1,0 +1,19 @@
+name: Label PR
+
+# pull_request_target runs with a write token in the context of the base repo.
+# It is safe here because the PR's code is never checked out or executed.
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  label:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/labeler@v5
+        with:
+          sync-labels: true

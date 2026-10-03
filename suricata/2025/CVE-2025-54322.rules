@@ -1,0 +1,1 @@
+alert http $EXTERNAL_NET any -> $HTTP_SERVERS any (msg:"XSpeeder SXZOS Pre-Auth RCE Attempt"; flow:to_server,established; http.method; content:"GET"; http.uri; content:"chkid="; nocase; http.header; content:"X-SXZ-R"; pcre:"/chkid=[A-Za-z0-9+\/]{10,}/"; sid:1003700; rev:1; reference:cve,CVE-2025-54322; reference:url,https://vedas.arpsyndicate.io/?vuln=CVE-2025-54322;)

@@ -1,0 +1,66 @@
+name: Suricata
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, labeled, unlabeled]
+    paths:
+      - "suricata/**"
+      - "scripts/**"
+      - ".github/workflows/suricata.yml"
+  push:
+    branches: [main]
+    paths:
+      - "suricata/**"
+      - "scripts/**"
+      - ".github/workflows/suricata.yml"
+  schedule:
+    - cron: "17 3 * * 1" # weekly: re-validate the full corpus against the latest stable Suricata
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: suricata-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: Lint + engine check
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      # Maintainer-only label: allows new SIDs in the VEDAS generator range.
+      ALLOW_VEDAS_SIDS: ${{ contains(github.event.pull_request.labels.*.name, 'vedas-generated') }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Suricata (OISF stable PPA)
+        run: |
+          sudo add-apt-repository -y ppa:oisf/suricata-stable
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq suricata
+          suricata -V
+
+      - name: Scope
+        id: scope
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            echo "args=--base origin/${{ github.base_ref }}" >> "$GITHUB_OUTPUT"
+          else
+            # Full corpus: report errors only, legacy style warnings would drown the log.
+            echo "args=--errors-only" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Lint
+        run: python3 scripts/lint_suricata.py ${{ steps.scope.outputs.args }}
+
+      - name: Engine check (suricata -T)
+        if: ${{ !cancelled() }}
+        run: python3 scripts/validate_suricata_engine.py ${{ steps.scope.outputs.args }}

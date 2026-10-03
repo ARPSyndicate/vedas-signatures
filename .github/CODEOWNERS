@@ -1,0 +1,6 @@
+# Default reviewers for everything.
+*              @g147
+
+# Validation tooling and CI gate what gets merged; changes need a maintainer.
+/scripts/      @g147
+/.github/      @g147

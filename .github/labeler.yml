@@ -1,0 +1,15 @@
+suricata:
+  - changed-files:
+      - any-glob-to-any-file: "suricata/**"
+
+nuclei:
+  - changed-files:
+      - any-glob-to-any-file: "nuclei/**"
+
+tooling:
+  - changed-files:
+      - any-glob-to-any-file: ["scripts/**", ".github/**"]
+
+documentation:
+  - changed-files:
+      - any-glob-to-any-file: ["*.md", "**/README.md"]

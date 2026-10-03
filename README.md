@@ -1,27 +1,109 @@
+# VEDAS Signatures
 
-# Suricata VEDAS
-## VEDAS-Driven Autonomous Generation of Suricata Rules for CVEs
+### VEDAS-Driven Autonomous Generation + Community Contributions of Suricata & Nuclei Rules for CVEs
 
-### Purpose
-This repository serves as an open, collaborative validation space for Suricata rules generated autonomously by **ARPSyndicate's Vulnerability & Exploit Data Aggregation System (VEDAS)**. 
+[![Suricata](https://github.com/ARPSyndicate/vedas-signatures/actions/workflows/suricata.yml/badge.svg)](https://github.com/ARPSyndicate/vedas-signatures/actions/workflows/suricata.yml)
+[![Nuclei](https://github.com/ARPSyndicate/vedas-signatures/actions/workflows/nuclei.yml/badge.svg)](https://github.com/ARPSyndicate/vedas-signatures/actions/workflows/nuclei.yml)
 
-While such AI enables **rapid, large-scale creation of detection rules** from vulnerability and exploit intelligence, reliable security detection requires **transparency, human review, and real-world testing**. 
+This repository is an open, collaborative validation space for CVE detection content:
 
-By making these AI-generated rules openly available, we hope to enable the security community to **review, validate, and improve detection logic through issues and pull requests**.
+- **Suricata rules**: network detection of exploitation attempts.
+- **Nuclei templates**: active, non-destructive checks for exposure to a CVE.
 
-The goal is to bridge AI-driven automation with open-source collaboration to improve reliability and accelerate intelligence-driven detection engineering for all.
+Most signatures are generated autonomously by **ARPSyndicate's Vulnerability & Exploit Data Aggregation System ([VEDAS](https://vedas.arpsyndicate.io))**. AI lets us create detection content quickly and at scale from vulnerability and exploit intelligence. Reliable detection still needs **transparency, human review and real-world testing**, so the content is published here for the community to **review, validate, fix and extend** through issues and pull requests.
 
-### Total Rules: 7503
-| CVE Year | CVE Year | CVE Year | CVE Year |
-| ----- | ----- | ------ | ------ |
-| 1999 (4) | 2000 (7) | 2001 (9) | 2002 (9) |
-| 2003 (1) | 2004 (5) | 2005 (20) | 2006 (17) |
-| 2007 (34) | 2008 (75) | 2009 (79) | 2010 (190) |
-| 2011 (80) | 2012 (205) | 2013 (249) | 2014 (306) |
-| 2015 (266) | 2016 (239) | 2017 (440) | 2018 (687) |
-| 2019 (528) | 2020 (620) | 2021 (782) | 2022 (764) |
-| 2023 (717) | 2024 (726) | 2025 (443) | 2026 (0) |
+## Coverage
 
+<!-- STATS:START -->
+| | Suricata | Nuclei |
+| --- | ---: | ---: |
+| **CVEs covered** | 7,502 | 0 |
+| **Signatures** | 7,800 rules | 0 templates |
 
-### Disclaimer
-Suricata rules in this repository are generated fully autonomously by the VEDAS platform and have undergone syntactic validation only. **Logical testing has not been performed in most cases. Please validate all rules prior to deployment.** Community feedback via pull requests and issues is encouraged.
+**7,502 unique CVEs** across both formats.
+
+<details>
+<summary>Coverage by CVE year</summary>
+
+| CVE year | Suricata CVEs | Suricata rules | Nuclei templates |
+| --- | ---: | ---: | ---: |
+| 1999 | 4 | 4 | 0 |
+| 2000 | 7 | 7 | 0 |
+| 2001 | 9 | 9 | 0 |
+| 2002 | 9 | 9 | 0 |
+| 2003 | 1 | 1 | 0 |
+| 2004 | 5 | 5 | 0 |
+| 2005 | 20 | 20 | 0 |
+| 2006 | 17 | 18 | 0 |
+| 2007 | 34 | 35 | 0 |
+| 2008 | 75 | 89 | 0 |
+| 2009 | 79 | 81 | 0 |
+| 2010 | 190 | 198 | 0 |
+| 2011 | 80 | 82 | 0 |
+| 2012 | 205 | 210 | 0 |
+| 2013 | 249 | 258 | 0 |
+| 2014 | 306 | 348 | 0 |
+| 2015 | 266 | 291 | 0 |
+| 2016 | 239 | 250 | 0 |
+| 2017 | 440 | 452 | 0 |
+| 2018 | 687 | 724 | 0 |
+| 2019 | 528 | 551 | 0 |
+| 2020 | 620 | 637 | 0 |
+| 2021 | 782 | 806 | 0 |
+| 2022 | 764 | 792 | 0 |
+| 2023 | 717 | 727 | 0 |
+| 2024 | 726 | 743 | 0 |
+| 2025 | 443 | 453 | 0 |
+
+</details>
+<!-- STATS:END -->
+
+## Layout
+
+```
+suricata/<YYYY>/CVE-YYYY-NNNNN.rules   # one file per CVE, one rule per line
+nuclei/<YYYY>/CVE-YYYY-NNNNN.yaml      # one template per CVE
+scripts/                               # validation tooling used by CI (run it locally too)
+.github/                               # CI workflows, issue forms, PR template
+```
+
+`<YYYY>` is the CVE year, not the year the signature was written.
+
+## Using the signatures
+
+**Suricata** (tested on Suricata 8.x):
+
+```bash
+cat suricata/*/*.rules > vedas.rules
+suricata -T -c /etc/suricata/suricata.yaml -S vedas.rules   # test-load first
+```
+
+Or add the directory to `rule-files:` in `suricata.yaml`. SIDs `1000000-1999999` come from VEDAS and `3000000-3999999` from the community. Neither range overlaps ET Open.
+
+**Nuclei** (tested on Nuclei v3):
+
+```bash
+nuclei -t nuclei/ -u https://target.example
+```
+
+Only scan systems you are authorised to test.
+
+## Contributing
+
+Contributions of every kind are welcome:
+
+| You want to... | Do this |
+| --- | --- |
+| Report a rule that fires on benign traffic | [False positive issue](../../issues/new?template=false-positive.yml) |
+| Report a rule that misses real exploitation | [False negative issue](../../issues/new?template=false-negative.yml) |
+| Report a rule that fails to load or is slow | [Broken signature issue](../../issues/new?template=broken-signature.yml) |
+| Ask for coverage of a CVE | [Signature request](../../issues/new?template=signature-request.yml) |
+| Fix or add a signature | Open a pull request: see **[CONTRIBUTING.md](CONTRIBUTING.md)** |
+
+Every pull request is checked automatically. It must load in real Suricata/Nuclei engines and pass the repository lint, and the target CVE must exist on cve.org. You can run the same checks locally before pushing (see [CONTRIBUTING.md](CONTRIBUTING.md#validate-locally)).
+
+## Disclaimer
+
+Signatures generated by VEDAS are **syntactically validated only**. Logical testing has not been performed in most cases. **Validate every signature in your own environment before deploying it.** Community-reviewed signatures are marked as such in their pull request history. This content is provided as-is, without warranty of any kind (see [LICENSE](LICENSE)).
+
+Please report security issues in this repository's tooling privately. See [SECURITY.md](SECURITY.md).

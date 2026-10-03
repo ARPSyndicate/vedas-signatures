@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Report a security vulnerability in this repository
+    url: https://github.com/ARPSyndicate/vedas-signatures/security/advisories/new
+    about: Please do not open public issues for security problems in the tooling or workflows.
+  - name: VEDAS vulnerability intelligence
+    url: https://vedas.arpsyndicate.io
+    about: Look up the exploit and vulnerability data a signature was generated from.

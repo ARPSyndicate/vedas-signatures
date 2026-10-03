@@ -1,0 +1,40 @@
+name: Update coverage stats
+
+# Regenerates the coverage table in README.md after merges, so contributors never
+# have to touch it (and PRs never conflict on it).
+on:
+  push:
+    branches: [main]
+    paths:
+      - "suricata/**"
+      - "nuclei/**"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: stats
+  cancel-in-progress: false
+
+jobs:
+  stats:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python3 scripts/update_stats.py
+      - name: Commit if changed
+        run: |
+          if git diff --quiet README.md; then
+            echo "stats unchanged"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "chore: update coverage stats [skip ci]" README.md
+          git pull --rebase origin main
+          git push

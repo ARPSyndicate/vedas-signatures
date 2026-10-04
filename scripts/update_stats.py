@@ -35,8 +35,12 @@ def render() -> str:
         nuc_files[f.parent.name] += 1
 
     years = sorted(set(sur_files) | set(nuc_files))
+    total = len({f.stem for f in SURICATA_DIR.glob("*/CVE-*.rules")}
+                | {f.stem for f in NUCLEI_DIR.glob("*/CVE-*.yaml")})
     lines = [
         START,
+        f"**{total:,} unique CVEs covered** — each with a Suricata rule and a Nuclei template.",
+        "",
         "| CVE year | Suricata Signatures | Nuclei Signatures |",
         "| --- | ---: | ---: |",
     ]

@@ -1,6 +1,8 @@
-# Private VEDAS generator / helper scripts kept at the repository root.
+# Proprietary VEDAS automation (generation, crawling, conversion) — kept locally, never committed.
 /*.py
 /*.sh
+sandbox/
+nt-repo/
 
 __pycache__/
 *.pyc

@@ -138,6 +138,12 @@ def lint_file(path: Path, rep: Reporter, errors_only: bool) -> None:
     if len(refs) != 2:
         rep.error(path, f"info.reference must contain exactly 2 references (exploit.observer + subdomain.center), found {len(refs)}")
 
+    low = data.decode("utf-8", "replace").lower()
+    for fp in ("projectdiscovery", "nuclei", "jaeles", "scanfactory", "burpcollaborator",
+               "pdteam", "dwisiswant0", "interact.sh"):
+        if fp in low:
+            rep.error(path, f"scanner fingerprint {fp!r} must not appear in a template; use a random value / self-hosted payload")
+
     protos = [k for k in doc if k in PROTOCOLS]
     if not protos:
         rep.error(path, f"no request block found (expected one of: {', '.join(sorted(PROTOCOLS - set(FORBIDDEN_PROTOCOLS)))})")

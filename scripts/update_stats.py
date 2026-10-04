@@ -35,26 +35,14 @@ def render() -> str:
         nuc_files[f.parent.name] += 1
 
     years = sorted(set(sur_files) | set(nuc_files))
-    cves = len({f.stem for f in SURICATA_DIR.glob("*/CVE-*.rules")}
-               | {f.stem for f in NUCLEI_DIR.glob("*/CVE-*.yaml")})
     lines = [
         START,
-        "| | Suricata | Nuclei |",
+        "| CVE year | Suricata Signatures | Nuclei Signatures |",
         "| --- | ---: | ---: |",
-        f"| **CVEs covered** | {sum(sur_files.values()):,} | {sum(nuc_files.values()):,} |",
-        f"| **Signatures** | {sum(sur_rules.values()):,} rules | {sum(nuc_files.values()):,} templates |",
-        "",
-        f"**{cves:,} unique CVEs** across both formats.",
-        "",
-        "<details>",
-        "<summary>Coverage by CVE year</summary>",
-        "",
-        "| CVE year | Suricata CVEs | Suricata rules | Nuclei templates |",
-        "| --- | ---: | ---: | ---: |",
     ]
     for y in years:
-        lines.append(f"| {y} | {sur_files[y]:,} | {sur_rules[y]:,} | {nuc_files[y]:,} |")
-    lines += ["", "</details>", END]
+        lines.append(f"| {y} | {sur_rules[y]:,} | {nuc_files[y]:,} |")
+    lines.append(END)
     return "\n".join(lines)
 
 

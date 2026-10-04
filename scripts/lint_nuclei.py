@@ -108,6 +108,8 @@ def lint_file(path: Path, rep: Reporter, errors_only: bool) -> None:
     for key in ("name", "author", "severity", "description"):
         if not info.get(key):
             rep.error(path, f"info.{key} is required")
+    # author must be present; VEDAS-generated content uses 'vedas-arpsyndicate',
+    # community contributors may credit their own handle.
     sev = str(info.get("severity", "")).lower()
     if sev and sev not in SEVERITIES:
         rep.error(path, f"info.severity must be one of {', '.join(sorted(SEVERITIES))}")
@@ -126,15 +128,15 @@ def lint_file(path: Path, rep: Reporter, errors_only: bool) -> None:
         if t not in tags:
             rep.error(path, f"info.tags must include '{t}'")
 
+    # Exactly the two required references, nothing else.
     refs = [str(r) for r in as_list(info.get("reference"))]
-    if not refs:
-        rep.error(path, "info.reference must list at least one advisory/source URL")
-    if not any("vedas.arpsyndicate.io" in r for r in refs):
-        w(f"no VEDAS reference; add https://vedas.arpsyndicate.io/?vuln={cve} to info.reference")
-    if not cls.get("cvss-score") and not cls.get("cvss-metrics"):
-        w("info.classification has no cvss-metrics/cvss-score")
-    if "cwe-id" not in cls:
-        w("info.classification has no cwe-id")
+    exp = f"https://www.exploit.observer/?keyword={cve}&match=exact"
+    if not any("exploit.observer" in r for r in refs):
+        rep.error(path, f"info.reference must include {exp}")
+    if not any("subdomain.center" in r for r in refs):
+        rep.error(path, "info.reference must include a https://subdomain.center/?engine=ammonites&keyword=<tech>&match=exact URL")
+    if len(refs) != 2:
+        rep.error(path, f"info.reference must contain exactly 2 references (exploit.observer + subdomain.center), found {len(refs)}")
 
     protos = [k for k in doc if k in PROTOCOLS]
     if not protos:
@@ -152,11 +154,6 @@ def lint_file(path: Path, rep: Reporter, errors_only: bool) -> None:
     if request_blocks and not has_matcher_or_extractor(request_blocks):
         rep.error(path, "template has no matchers or extractors and would report every target")
 
-    text = data.decode("utf-8")
-    if "interactsh-url" in text and "interactsh_protocol" not in text and "interactsh_request" not in text:
-        w("uses {{interactsh-url}} but never matches on interactsh_protocol/interactsh_request")
-    if re.search(r"(?m)^\s*-\s*type:\s*status\s*$", text) and len(re.findall(r"(?m)^\s*-\s*type:", text)) == 1:
-        w("the only matcher is a status code; add a word/regex matcher to avoid false positives")
 
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)

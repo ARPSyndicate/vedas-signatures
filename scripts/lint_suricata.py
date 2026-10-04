@@ -173,8 +173,10 @@ def lint_file(path: Path, rep: Reporter, errors_only: bool) -> list[Rule]:
         legacy = sorted(set(keys) & LEGACY_MODIFIERS)
         if legacy:
             w(f"legacy content modifier(s) {', '.join(legacy)}; prefer sticky buffers (e.g. http.uri; content:...)")
-        if not any("vedas.arpsyndicate.io" in v for v in r.opt("reference")):
-            w(f"no VEDAS reference; add 'reference:url,https://vedas.arpsyndicate.io/?vuln={cve};'")
+        if not any("exploit.observer" in v for v in r.opt("reference")):
+            w(f"no VEDAS reference; add 'reference:url,https://www.exploit.observer/?keyword={cve}&match=exact;'")
+        if not any("subdomain.center" in v for v in r.opt("reference")):
+            w(f"no Subdomain Center reference; add 'reference:url,https://subdomain.center/?engine=ammonites&keyword=<tech>&match=exact;'")
     return rules
 
 

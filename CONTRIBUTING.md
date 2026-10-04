@@ -58,6 +58,7 @@ Every rule must have:
 | `sid` | Unique across the whole repository (see [SID ranges](#sid-ranges)). |
 | `rev` | Starts at `1`. **Bump it every time you change an existing rule.** |
 | `reference:cve,<CVE>` | Must match the file name. |
+| references (URLs) | Exactly two: `reference:url,https://www.exploit.observer/?keyword=<CVE>&match=exact;` and `reference:url,https://subdomain.center/?engine=ammonites&keyword=<tech>&match=exact;` (`<tech>` = the affected product/vendor keyword). |
 
 Strongly recommended (CI warns when they are missing):
 
@@ -65,7 +66,6 @@ Strongly recommended (CI warns when they are missing):
 - `classtype:` from `classification.config`, e.g. `web-application-attack`, `attempted-admin`
 - at least one `content` match. pcre-only rules are slow.
 - sticky buffers (`http.uri; content:"..."`) instead of legacy modifiers (`content:"..."; http_uri;`, `uricontent`)
-- `reference:url,https://vedas.arpsyndicate.io/?vuln=<CVE>;`, plus advisory/PoC URLs
 - `metadata:` such as `created_at`, `updated_at`, `confidence`, `signature_severity`
 
 ### SID ranges
@@ -86,7 +86,7 @@ Never reuse or renumber an existing SID. Modify the rule and bump `rev`. To reti
 ### Example
 
 ```
-alert http $EXTERNAL_NET any -> $HOME_NET any (msg:"Palo Alto PAN-OS Management Interface Auth Bypass Attempt (CVE-2024-0012)"; flow:established,to_server; http.uri; content:"/php/"; startswith; http.header; content:"X-PAN-AUTHCHECK|3a 20|off"; nocase; fast_pattern; classtype:web-application-attack; reference:cve,CVE-2024-0012; reference:url,https://vedas.arpsyndicate.io/?vuln=CVE-2024-0012; sid:3000000; rev:1;)
+alert http $EXTERNAL_NET any -> $HOME_NET any (msg:"Palo Alto PAN-OS Management Interface Auth Bypass Attempt (CVE-2024-0012)"; flow:established,to_server; http.uri; content:"/php/"; startswith; http.header; content:"X-PAN-AUTHCHECK|3a 20|off"; nocase; fast_pattern; classtype:web-application-attack; reference:cve,CVE-2024-0012; reference:url,https://www.exploit.observer/?keyword=CVE-2024-0012&match=exact; reference:url,https://subdomain.center/?engine=ammonites&keyword=panos&match=exact; sid:3000000; rev:1;)
 ```
 
 ### Testing a rule against traffic
@@ -113,13 +113,13 @@ id: CVE-2024-0012                     # must equal the file name
 
 info:
   name: Palo Alto PAN-OS - Management Interface Authentication Bypass
-  author: your-github-handle          # comma-separated for several authors
+  author: vedas-arpsyndicate          # VEDAS-generated; community contributors use their own handle
   severity: critical                  # info | low | medium | high | critical | unknown
   description: |
     One or two sentences on the vulnerability and what the template checks.
-  reference:
-    - https://vedas.arpsyndicate.io/?vuln=CVE-2024-0012
-    - https://security.paloaltonetworks.com/CVE-2024-0012
+  reference:                            # exactly these two, nothing else
+    - https://www.exploit.observer/?keyword=CVE-2024-0012&match=exact
+    - https://subdomain.center/?engine=ammonites&keyword=panos&match=exact
   classification:
     cvss-metrics: CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H
     cvss-score: 9.8
@@ -149,11 +149,14 @@ http:
 
 ### Template rules
 
+- **Author:** required. VEDAS-generated templates use `vedas-arpsyndicate`; community contributors may credit their own handle (comma-separated for several).
+- **Exactly two references:** the `exploit.observer` keyword URL and the `subdomain.center` keyword URL shown above — no advisory/PoC/third-party URLs in the template (enforced by CI).
 - **Accepted protocols:** `http`, `network`/`tcp`, `dns`, `ssl`, `websocket`, `whois`. `headless` and `javascript` are accepted but get extra review. Explain why `http`/`network` is not enough.
 - **Not accepted:** `code` (runs commands on the scanner host), `file` (reads the scanner host), `workflows`, and `self-contained` requests.
 - Every template needs matchers or extractors. A status-code-only matcher is a false-positive magnet, so combine it with a `word`/`regex` match on something specific to the vulnerable product.
 - Prefer version-agnostic proof of the bug over banner/version matching. If you must match versions, use `dsl` comparisons and say so in the description.
 - Payloads must be harmless: use unique random markers (`{{randstr}}`) and `{{interactsh-url}}` for out-of-band checks, and match on `interactsh_protocol`.
+- **No third-party fingerprints or external payload hosts.** Do not leave scanner-identifying markers (tool/vendor names, author handles) in payloads or matchers, and do not fetch payloads from someone else's server. If a check needs a hosted payload file (SVG, DTD, CSV, …), add it under [`payloads/`](payloads/) and reference it from this repository, so the feed stays self-contained and runnable on-prem.
 - Do not sign templates. Leave any `# digest:` line out.
 
 ## Validate locally
@@ -186,7 +189,7 @@ With no arguments, each script checks the whole tree.
 | --- | --- | --- |
 | **Suricata** | `lint_suricata.py` | wrong path/name, missing `msg`/`sid`/`rev`/CVE reference, non-`alert` action, duplicate SID, modified rule without a `rev` bump, new SID outside the community range |
 | | `validate_suricata_engine.py` | any rule the latest stable Suricata refuses to load |
-| **Nuclei** | `lint_nuclei.py` | wrong path/name, `id` ≠ file name, missing `info` fields, missing `cve`/`cve<YYYY>` tags, forbidden protocols, no matchers |
+| **Nuclei** | `lint_nuclei.py` | wrong path/name, `id` ≠ file name, missing `info` fields (incl. `author`), references not exactly the two required URLs, missing `cve`/`cve<YYYY>` tags, forbidden protocols, no matchers |
 | | `validate_nuclei_engine.py` | any template `nuclei -validate` rejects |
 | **CVE check** | `check_cve.py` | CVE not found on cve.org, or REJECTED/RESERVED |
 

@@ -1,0 +1,12 @@
+{
+  "openapi": "3.0.0",
+  "info": { "title": "vedas-poc", "version": "1.0.0" },
+  "paths": {
+    "/vedas": {
+      "get": {
+        "operationId": "vedasPoc",
+        "responses": { "200": { "description": "ok" } }
+      }
+    }
+  }
+}

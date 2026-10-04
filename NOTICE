@@ -1,0 +1,25 @@
+VEDAS Signatures
+================
+
+The detection content in this repository is generated and curated by
+ARPSyndicate's Vulnerability & Exploit Data Aggregation System (VEDAS).
+
+This work is only possible because of the open security ecosystem. VEDAS
+aggregates publicly available intelligence (OSINT) from across the internet —
+vulnerability databases and advisories, exploit and proof-of-concept
+publications, detection rulesets, security research, blog posts, and the
+countless disclosures shared by vendors, CERTs, independent researchers, and
+the wider cybersecurity community. The signatures here stand on that collective
+body of knowledge, and we gratefully acknowledge everyone who contributes to it.
+
+Where specific detection logic (request paths, parameters, matchers) was adapted
+from an openly licensed project, we credit it explicitly. In particular, some
+Nuclei templates were informed by the open-source project:
+
+  projectdiscovery/nuclei-templates  —  https://github.com/projectdiscovery/nuclei-templates
+  Copyright (c) ProjectDiscovery, Inc.  —  MIT License
+
+Community contributions to this repository are credited to their authors in the
+`info.author` field of the templates they submit and in the pull-request history.
+
+If you believe your work should be attributed here, please open an issue.

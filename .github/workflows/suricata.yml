@@ -46,6 +46,7 @@ jobs:
           sudo add-apt-repository -y ppa:oisf/suricata-stable
           sudo apt-get update -qq
           sudo apt-get install -y -qq suricata
+          sudo chmod -R a+rX /etc/suricata
           suricata -V
 
       - name: Scope

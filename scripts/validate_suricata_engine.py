@@ -41,9 +41,24 @@ WARN_RULE = re.compile(r"^W: (?P<module>[\w-]+): (?P<msg>.*?) in '(?P<rule>alert
 def find_config(explicit: str | None) -> str:
     if explicit:
         return explicit
+    unreadable = []
     for c in [os.environ.get("SURICATA_CONFIG", ""), *CONFIG_CANDIDATES]:
-        if c and Path(c).is_file():
+        if not c:
+            continue
+        # Some packages (e.g. the OISF PPA) install /etc/suricata readable by root only.
+        if os.access(c, os.R_OK):
             return c
+        try:
+            os.stat(c)
+        except PermissionError:
+            unreadable.append(c)
+        except OSError:
+            continue
+        else:
+            unreadable.append(c)
+    if unreadable:
+        sys.exit(f"suricata.yaml exists but is not readable by this user: {', '.join(unreadable)}\n"
+                 f"fix with: sudo chmod -R a+rX {Path(unreadable[0]).parent}  (or pass --config)")
     sys.exit("could not find suricata.yaml; pass --config or set SURICATA_CONFIG")
 
 

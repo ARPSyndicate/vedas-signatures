@@ -37,13 +37,26 @@ run_suricata() {
 run_nuclei() {
   echo "== Nuclei ($NUCLEI_IMAGE) =="
   local log; log="$(mktemp)"
+  # Pass 1: structural validation.
   if docker run --rm -v "$ROOT/nuclei":/nuclei:ro --entrypoint nuclei "$NUCLEI_IMAGE" \
        -duc -nc -validate -t /nuclei >"$log" 2>&1; then
     grep -iE 'validated successfully' "$log" | tail -1 || echo "validated"
   else
-    echo "FAILED: templates rejected by $NUCLEI_IMAGE"
-    grep -iE 'ERR|FTL' "$log" | head -40
+    echo "FAILED: templates rejected by $NUCLEI_IMAGE (-validate)"
+    grep -iE 'ERR|FTL|could not compile|does not exist' "$log" | head -40
     rc=1
+  fi
+  # Pass 2: compile pass -- forces request/payload compilation that -validate skips
+  # (e.g. missing payload wordlists). Scans an unroutable dummy target; only
+  # load/compile errors matter, connection failures are ignored.
+  docker run --rm -v "$ROOT/nuclei":/nuclei:ro --entrypoint nuclei "$NUCLEI_IMAGE" \
+       -duc -nc -no-interactsh -timeout 1 -retries 0 -u http://127.0.0.1:1 -t /nuclei >"$log" 2>&1 || true
+  if grep -qiE 'error occurred (parsing|loading) template|could not compile|could not parse payloads|does not (exist|contain)' "$log"; then
+    echo "FAILED: templates failed to compile in $NUCLEI_IMAGE (compile pass)"
+    grep -iE 'error occurred (parsing|loading) template|could not compile|could not parse payloads|does not (exist|contain)' "$log" | head -40
+    rc=1
+  else
+    echo "compile pass: OK"
   fi
   rm -f "$log"
 }

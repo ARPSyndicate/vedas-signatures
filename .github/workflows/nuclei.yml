@@ -64,6 +64,6 @@ jobs:
       - name: Lint
         run: python3 scripts/lint_nuclei.py ${{ steps.scope.outputs.args }}
 
-      - name: Engine check (nuclei -validate)
+      - name: Engine check (nuclei -validate + compile pass)
         if: ${{ !cancelled() }}
         run: python3 scripts/validate_nuclei_engine.py ${{ steps.scope.outputs.args }}

@@ -35,11 +35,21 @@ def render() -> str:
         nuc_files[f.parent.name] += 1
 
     years = sorted(set(sur_files) | set(nuc_files))
-    total = len({f.stem for f in SURICATA_DIR.glob("*/CVE-*.rules")}
-                | {f.stem for f in NUCLEI_DIR.glob("*/CVE-*.yaml")})
+    sur_stems = {f.stem for f in SURICATA_DIR.glob("*/CVE-*.rules")}
+    nuc_stems = {f.stem for f in NUCLEI_DIR.glob("*/CVE-*.yaml")}
+    total = len(sur_stems | nuc_stems)
+    network_only = len(sur_stems - nuc_stems)
+    header = f"**{total:,} unique CVEs covered.**"
+    if network_only:
+        header += (f" Most carry both a Suricata rule and a Nuclei template; "
+                   f"{network_only:,} destructive or DoS CVEs are network-detection-only "
+                   f"— a passive Suricata rule with no active Nuclei check "
+                   f"(listed in [SURICATA_ONLY.txt](SURICATA_ONLY.txt)).")
+    else:
+        header += " Each carries a Suricata rule and a Nuclei template."
     lines = [
         START,
-        f"**{total:,} unique CVEs covered** — each with a Suricata rule and a Nuclei template.",
+        header,
         "",
         "| CVE year | Suricata Signatures | Nuclei Signatures |",
         "| --- | ---: | ---: |",

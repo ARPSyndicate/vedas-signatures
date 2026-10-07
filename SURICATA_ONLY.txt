@@ -137,7 +137,6 @@ CVE-2023-4278  # account-creation
 CVE-2023-7173  # account-creation
 CVE-2024-34471  # file-delete
 CVE-2024-36598  # file-upload (unauthenticated webshell)
-CVE-2024-46987  # path-traversal (authenticated)
 CVE-2024-48760  # file-upload
 CVE-2024-57428  # file-upload
 CVE-2024-57430  # privilege-escalation
@@ -160,3 +159,11 @@ CVE-2026-52832  # path-traversal (unauth file write as root, destructive)
 CVE-2026-54415  # privilege-escalation
 CVE-2026-59310  # path-traversal (syslog, non-HTTP vector)
 CVE-2026-63223  # file-upload
+CVE-2025-34112  # privesc
+CVE-2025-7441  # file_upload
+CVE-2025-57642  # file_upload
+CVE-2026-27636  # file_upload
+CVE-2026-28289  # file_upload
+CVE-2025-29009  # file_upload
+CVE-2026-38751  # file_upload
+CVE-2021-42342  # file_upload

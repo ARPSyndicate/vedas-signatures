@@ -4,5 +4,5 @@ contact_links:
     url: https://github.com/ARPSyndicate/vedas-signatures/security/advisories/new
     about: Please do not open public issues for security problems in the tooling or workflows.
   - name: VEDAS vulnerability intelligence
-    url: https://vedas.arpsyndicate.io
+    url: https://www.exploit.observer
     about: Look up the exploit and vulnerability data a signature was generated from.

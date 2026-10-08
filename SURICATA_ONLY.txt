@@ -34,26 +34,19 @@ CVE-2013-2748  # file-upload
 CVE-2013-5962  # file-upload
 CVE-2013-6227  # file-upload
 CVE-2013-6275  # csrf
+CVE-2014-10021  # file-upload
 CVE-2014-2088  # file-upload
 CVE-2014-2223  # file-upload
 CVE-2014-4170  # privilege-escalation
 CVE-2014-4613  # csrf
 CVE-2014-5460  # file-upload
-CVE-2014-10021  # file-upload
 CVE-2015-2780  # file-upload
 CVE-2015-2825  # file-upload
+CVE-2016-10036  # file-upload
+CVE-2016-10258  # file-upload
 CVE-2016-1524  # file-upload
 CVE-2016-4311  # csrf
 CVE-2016-8526  # privilege-escalation
-CVE-2016-10036  # file-upload
-CVE-2016-10258  # file-upload
-CVE-2017-5594  # password-recovery
-CVE-2017-7312  # privilege-escalation
-CVE-2017-7398  # csrf
-CVE-2017-7446  # csrf
-CVE-2017-7620  # csrf
-CVE-2017-8295  # password-recovery
-CVE-2017-9602  # file-upload
 CVE-2017-15276  # privilege-escalation
 CVE-2017-15734  # csrf
 CVE-2017-15735  # csrf
@@ -62,10 +55,14 @@ CVE-2017-16524  # file-upload
 CVE-2017-16949  # file-upload
 CVE-2017-17672  # file-delete
 CVE-2017-17976  # file-upload
-CVE-2018-7176  # csrf
-CVE-2018-7745  # account-creation
-CVE-2018-8814  # csrf
-CVE-2018-9926  # csrf
+CVE-2017-5594  # password-recovery
+CVE-2017-7312  # privilege-escalation
+CVE-2017-7398  # csrf
+CVE-2017-7446  # csrf
+CVE-2017-7620  # csrf
+CVE-2017-8295  # password-recovery
+CVE-2017-9602  # file-upload
+CVE-2018-1000888  # file-delete
 CVE-2018-10312  # csrf
 CVE-2018-11442  # csrf
 CVE-2018-11502  # csrf
@@ -88,7 +85,18 @@ CVE-2018-19126  # file-upload
 CVE-2018-19135  # csrf
 CVE-2018-19550  # file-upload
 CVE-2018-19829  # csrf
-CVE-2018-1000888  # file-delete
+CVE-2018-7176  # csrf
+CVE-2018-7745  # account-creation
+CVE-2018-8814  # csrf
+CVE-2018-9926  # csrf
+CVE-2019-10008  # privilege-escalation
+CVE-2019-10847  # csrf
+CVE-2019-12185  # file-upload
+CVE-2019-12922  # csrf
+CVE-2019-14328  # csrf
+CVE-2019-15813  # file-upload
+CVE-2019-16531  # csrf
+CVE-2019-16893  # device-reset
 CVE-2019-4013  # file-upload
 CVE-2019-5009  # file-upload
 CVE-2019-6249  # csrf
@@ -98,21 +106,13 @@ CVE-2019-8394  # file-upload
 CVE-2019-9189  # file-upload
 CVE-2019-9623  # file-upload
 CVE-2019-9769  # csrf
-CVE-2019-10008  # privilege-escalation
-CVE-2019-10847  # csrf
-CVE-2019-12185  # file-upload
-CVE-2019-12922  # csrf
-CVE-2019-14328  # csrf
-CVE-2019-15813  # file-upload
-CVE-2019-16531  # csrf
-CVE-2019-16893  # device-reset
-CVE-2020-5844  # file-upload
-CVE-2020-9758  # privilege-escalation
 CVE-2020-10386  # file-upload
 CVE-2020-14008  # file-upload
 CVE-2020-23342  # csrf
 CVE-2020-24609  # account-creation
 CVE-2020-35151  # account-creation
+CVE-2020-5844  # file-upload
+CVE-2020-9758  # privilege-escalation
 CVE-2021-20034  # device-reset
 CVE-2021-24174  # csrf
 CVE-2021-24272  # csrf
@@ -125,11 +125,15 @@ CVE-2021-30147  # csrf
 CVE-2021-31933  # file-upload
 CVE-2021-36711  # file-upload
 CVE-2021-39608  # file-upload
+CVE-2021-42342  # file_upload
 CVE-2021-42362  # file-upload
 CVE-2021-44673  # file-upload
-CVE-2022-3552  # file-upload
+CVE-2021-47753  # file_upload
+CVE-2021-47899  # file_upload
 CVE-2022-25241  # csrf
 CVE-2022-31886  # csrf
+CVE-2022-34128  # file_upload
+CVE-2022-3552  # file-upload
 CVE-2022-43097  # account-creation
 CVE-2022-48194  # file-upload
 CVE-2023-0455  # file-upload
@@ -140,30 +144,31 @@ CVE-2024-36598  # file-upload (unauthenticated webshell)
 CVE-2024-48760  # file-upload
 CVE-2024-57428  # file-upload
 CVE-2024-57430  # privilege-escalation
+CVE-2024-58348  # file_upload
+CVE-2024-58349  # file_upload
 CVE-2025-2594  # account-creation
+CVE-2025-29009  # file_upload
 CVE-2025-32370  # file-upload
+CVE-2025-34112  # privesc
 CVE-2025-55912  # file-upload
-CVE-2026-3180  # sql-injection (blind boolean, per-site nonce required)
+CVE-2025-57642  # file_upload
+CVE-2025-7441  # file_upload
 CVE-2026-23520  # command-injection (stored, admin-triggered)
 CVE-2026-25099  # file-upload
 CVE-2026-25232  # privilege-escalation
 CVE-2026-25643  # command-injection (destructive config write + restart)
 CVE-2026-27574  # account-creation
+CVE-2026-27636  # file_upload
+CVE-2026-28289  # file_upload
 CVE-2026-30225  # privilege-escalation
 CVE-2026-30944  # privilege-escalation
+CVE-2026-3180  # sql-injection (blind boolean, per-site nonce required)
 CVE-2026-34472  # auth-bypass (device response unverified for active)
 CVE-2026-36356  # command-injection (active runs chpasswd, destructive)
+CVE-2026-38751  # file_upload
 CVE-2026-47101  # privilege-escalation
 CVE-2026-52813  # path-traversal (org-create API, active->RCE destructive)
 CVE-2026-52832  # path-traversal (unauth file write as root, destructive)
 CVE-2026-54415  # privilege-escalation
 CVE-2026-59310  # path-traversal (syslog, non-HTTP vector)
 CVE-2026-63223  # file-upload
-CVE-2025-34112  # privesc
-CVE-2025-7441  # file_upload
-CVE-2025-57642  # file_upload
-CVE-2026-27636  # file_upload
-CVE-2026-28289  # file_upload
-CVE-2025-29009  # file_upload
-CVE-2026-38751  # file_upload
-CVE-2021-42342  # file_upload

@@ -8,43 +8,43 @@ This repository is an open, collaborative validation space for CVE detection con
 - **Suricata rules**: network detection of exploitation attempts.
 - **Nuclei templates**: active, non-destructive checks for exposure to a CVE.
 
-Most signatures are generated autonomously by **ARPSyndicate's Vulnerability & Exploit Data Aggregation System ([VEDAS](https://vedas.arpsyndicate.io))**. AI lets us create detection content quickly and at scale from vulnerability and exploit intelligence. Reliable detection still needs **transparency, human review and real-world testing**, so the content is published here for the community to **review, validate, fix and extend** through issues and pull requests.
+Most signatures are generated autonomously by **ARPSyndicate's Vulnerability & Exploit Data Aggregation System ([VEDAS](https://kenzer.arpsyndicate.io/vedas))**. AI lets us create detection content quickly and at scale from vulnerability and exploit intelligence. Reliable detection still needs **transparency, human review and real-world testing**, so the content is published here for the community to **review, validate, fix and extend** through issues and pull requests.
 
 ## Coverage
 
 <!-- STATS:START -->
-**13,717 unique CVEs covered.** Most carry both a Suricata rule and a Nuclei template; 168 destructive or DoS CVEs are network-detection-only — a passive Suricata rule with no active Nuclei check (listed in [SURICATA_ONLY.txt](SURICATA_ONLY.txt)).
+**13,891 unique CVEs covered.** Most carry both a Suricata rule and a Nuclei template; 173 destructive or DoS CVEs are network-detection-only — a passive Suricata rule with no active Nuclei check (listed in [SURICATA_ONLY.txt](SURICATA_ONLY.txt)).
 
 | CVE year | Suricata Signatures | Nuclei Signatures |
 | --- | ---: | ---: |
 | 1999 | 6 | 6 |
 | 2000 | 19 | 19 |
 | 2001 | 23 | 21 |
-| 2002 | 72 | 72 |
+| 2002 | 73 | 73 |
 | 2003 | 69 | 69 |
 | 2004 | 187 | 186 |
 | 2005 | 538 | 537 |
-| 2006 | 1,415 | 1,413 |
-| 2007 | 1,130 | 1,127 |
-| 2008 | 1,749 | 1,741 |
-| 2009 | 793 | 789 |
-| 2010 | 676 | 674 |
-| 2011 | 177 | 175 |
-| 2012 | 306 | 301 |
-| 2013 | 217 | 212 |
+| 2006 | 1,418 | 1,416 |
+| 2007 | 1,132 | 1,129 |
+| 2008 | 1,753 | 1,745 |
+| 2009 | 803 | 799 |
+| 2010 | 677 | 675 |
+| 2011 | 181 | 179 |
+| 2012 | 311 | 306 |
+| 2013 | 220 | 215 |
 | 2014 | 326 | 320 |
-| 2015 | 224 | 222 |
-| 2016 | 151 | 146 |
-| 2017 | 379 | 364 |
-| 2018 | 558 | 531 |
-| 2019 | 395 | 378 |
-| 2020 | 494 | 487 |
-| 2021 | 696 | 681 |
-| 2022 | 680 | 675 |
-| 2023 | 682 | 679 |
-| 2024 | 767 | 762 |
-| 2025 | 521 | 514 |
-| 2026 | 468 | 448 |
+| 2015 | 227 | 225 |
+| 2016 | 156 | 151 |
+| 2017 | 384 | 369 |
+| 2018 | 562 | 535 |
+| 2019 | 403 | 386 |
+| 2020 | 508 | 501 |
+| 2021 | 730 | 713 |
+| 2022 | 697 | 691 |
+| 2023 | 713 | 710 |
+| 2024 | 783 | 776 |
+| 2025 | 524 | 517 |
+| 2026 | 469 | 449 |
 <!-- STATS:END -->
 
 ## Layout

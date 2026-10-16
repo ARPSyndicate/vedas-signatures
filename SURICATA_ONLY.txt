@@ -146,6 +146,29 @@ CVE-2024-57428  # file-upload
 CVE-2024-57430  # privilege-escalation
 CVE-2024-58348  # file_upload
 CVE-2024-58349  # file_upload
+CVE-2024-25736  # dos (unauthenticated device reboot)
+CVE-2024-2624  # path-traversal (switch_personal_path, arbitrary file write/overwrite, destructive)
+CVE-2024-2358  # path-traversal to code-execution (apply_settings extensions, destructive)
+CVE-2024-1601  # sql-injection (delete_discussion, destructive mass-delete)
+CVE-2024-1646  # authentication-bypass (sensitive admin endpoints: update_software/restart_program)
+CVE-2024-34070  # stored-xss via unauth login loginname (persists in admin logs; no safe active probe)
+CVE-2024-43918  # unauth arbitrary SQL execution to RCE (WP WBW importGroup .sql upload, destructive)
+CVE-2023-49970  # authenticated blind SQLi (customer_support save_ticket subject; no safe unauth active probe)
+CVE-2024-1301   # unauth blind time-based SQLi (moni:tool j_username; no safe active probe)
+CVE-2024-25227  # auth-bypass SQLi (ABO.CMS tb_login tautology; cannot verify without bypassing auth)
+CVE-2024-24141  # sql-injection in delete-task.php task param (destructive delete endpoint; no safe active probe)
+CVE-2024-21793  # unauth blind OData injection (F5 BIG-IP Next CM api login username; char-by-char oracle, no safe active probe)
+CVE-2024-26026  # unauth blind SQLi (F5 BIG-IP Next CM api login provider_name; char-by-char oracle, no safe active probe)
+CVE-2024-44867  # path traversal via phpok tpl_set filename (admin template write path; no safe active probe)
+CVE-2024-30998  # unauth blind SQLi (phpgurukul men-salon email param; char-by-char oracle, no safe active probe)
+CVE-2023-49540  # stored XSS via transaction/save buyer_name (persists in history view; no safe active probe)
+CVE-2023-49984  # stored XSS via admin main_settings name (authenticated persist; no safe active probe)
+CVE-2008-6970   # blind SQLi via UBB.threads dosearch Words param (char-by-char oracle; no safe active probe)
+CVE-2021-42665  # login SQLi / auth-bypass (Nia Munoz login.php username; cannot verify without bypassing auth)
+CVE-2023-49547  # login SQLi auth-bypass (customer_support ajax.php action=login; boolean tautology, no error oracle)
+CVE-2024-24139  # sql-injection in delete-user.php user param (authenticated destructive delete endpoint; no safe active probe)
+CVE-2024-32369  # authenticated SQLi (HSC MailInspector mliWhiteList limit; no confirmed login flow for active probe)
+CVE-2024-37765  # authenticated blind SQLi (MachForm my_account user_admin_theme; no confirmed login flow for active probe)
 CVE-2025-2594  # account-creation
 CVE-2025-29009  # file_upload
 CVE-2025-32370  # file-upload

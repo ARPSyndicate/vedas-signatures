@@ -1,197 +1,315 @@
 # Suricata network-detection rules with intentionally NO Nuclei template (destructive classes).
-CVE-2001-0089  # file-upload
-CVE-2001-0527  # account-creation
-CVE-2004-1932  # account-creation
-CVE-2005-4491  # account-creation
-CVE-2006-4875  # file-upload
-CVE-2006-6879  # file-upload
-CVE-2007-0972  # file-upload
-CVE-2007-3432  # file-upload
-CVE-2007-4527  # file-upload
-CVE-2008-0251  # file-upload
-CVE-2008-2574  # file-upload
-CVE-2008-3178  # file-upload
-CVE-2008-3362  # file-upload
-CVE-2008-5732  # file-upload
-CVE-2008-6084  # file-upload
-CVE-2008-6768  # file-upload
-CVE-2008-6769  # file-upload
-CVE-2009-0602  # file-upload
-CVE-2009-1446  # file-upload
-CVE-2009-1609  # file-upload
-CVE-2009-4140  # file-upload
-CVE-2010-3964  # file-upload
-CVE-2010-4313  # file-upload
-CVE-2011-4090  # privilege-escalation
-CVE-2011-4449  # file-upload
-CVE-2012-1010  # file-upload
-CVE-2012-1125  # file-upload
-CVE-2012-3574  # file-upload
-CVE-2012-3811  # file-upload
-CVE-2012-6528  # account-creation
-CVE-2013-1916  # file-upload
-CVE-2013-2748  # file-upload
-CVE-2013-5962  # file-upload
-CVE-2013-6227  # file-upload
-CVE-2013-6275  # csrf
-CVE-2014-10021  # file-upload
-CVE-2014-2088  # file-upload
-CVE-2014-2223  # file-upload
-CVE-2014-4170  # privilege-escalation
-CVE-2014-4613  # csrf
-CVE-2014-5460  # file-upload
-CVE-2015-2780  # file-upload
-CVE-2015-2825  # file-upload
-CVE-2016-10036  # file-upload
-CVE-2016-10258  # file-upload
-CVE-2016-1524  # file-upload
-CVE-2016-4311  # csrf
-CVE-2016-8526  # privilege-escalation
-CVE-2017-15276  # privilege-escalation
-CVE-2017-15734  # csrf
-CVE-2017-15735  # csrf
-CVE-2017-16244  # csrf
-CVE-2017-16524  # file-upload
-CVE-2017-16949  # file-upload
-CVE-2017-17672  # file-delete
-CVE-2017-17976  # file-upload
-CVE-2017-5594  # password-recovery
-CVE-2017-7312  # privilege-escalation
-CVE-2017-7398  # csrf
-CVE-2017-7446  # csrf
-CVE-2017-7620  # csrf
-CVE-2017-8295  # password-recovery
-CVE-2017-9602  # file-upload
-CVE-2018-1000888  # file-delete
-CVE-2018-10312  # csrf
-CVE-2018-11442  # csrf
-CVE-2018-11502  # csrf
-CVE-2018-11538  # csrf
-CVE-2018-11670  # csrf
-CVE-2018-11671  # csrf
-CVE-2018-12519  # file-upload
-CVE-2018-12596  # privilege-escalation
-CVE-2018-12602  # csrf
-CVE-2018-12603  # csrf
-CVE-2018-12739  # csrf
-CVE-2018-13989  # csrf
-CVE-2018-15844  # csrf
-CVE-2018-18760  # csrf
-CVE-2018-18793  # file-upload
-CVE-2018-18794  # csrf
-CVE-2018-18797  # csrf
-CVE-2018-18799  # csrf
-CVE-2018-19126  # file-upload
-CVE-2018-19135  # csrf
-CVE-2018-19550  # file-upload
-CVE-2018-19829  # csrf
-CVE-2018-7176  # csrf
-CVE-2018-7745  # account-creation
-CVE-2018-8814  # csrf
-CVE-2018-9926  # csrf
-CVE-2019-10008  # privilege-escalation
-CVE-2019-10847  # csrf
-CVE-2019-12185  # file-upload
-CVE-2019-12922  # csrf
-CVE-2019-14328  # csrf
-CVE-2019-15813  # file-upload
-CVE-2019-16531  # csrf
-CVE-2019-16893  # device-reset
-CVE-2019-4013  # file-upload
-CVE-2019-5009  # file-upload
-CVE-2019-6249  # csrf
-CVE-2019-7440  # csrf
-CVE-2019-8385  # privilege-escalation
-CVE-2019-8394  # file-upload
-CVE-2019-9189  # file-upload
-CVE-2019-9623  # file-upload
-CVE-2019-9769  # csrf
-CVE-2020-10386  # file-upload
-CVE-2020-14008  # file-upload
-CVE-2020-23342  # csrf
-CVE-2020-24609  # account-creation
-CVE-2020-35151  # account-creation
-CVE-2020-5844  # file-upload
-CVE-2020-9758  # privilege-escalation
-CVE-2021-20034  # device-reset
-CVE-2021-24174  # csrf
-CVE-2021-24272  # csrf
-CVE-2021-24545  # privilege-escalation
-CVE-2021-24581  # csrf
-CVE-2021-28379  # file-upload
-CVE-2021-28976  # file-upload
-CVE-2021-29460  # file-upload
-CVE-2021-30147  # csrf
-CVE-2021-31933  # file-upload
-CVE-2021-36711  # file-upload
-CVE-2021-39608  # file-upload
-CVE-2021-42342  # file_upload
-CVE-2021-42362  # file-upload
-CVE-2021-44673  # file-upload
-CVE-2021-47753  # file_upload
-CVE-2021-47899  # file_upload
-CVE-2022-25241  # csrf
-CVE-2022-31886  # csrf
-CVE-2022-34128  # file_upload
-CVE-2022-3552  # file-upload
-CVE-2022-43097  # account-creation
-CVE-2022-48194  # file-upload
-CVE-2023-0455  # file-upload
-CVE-2023-4278  # account-creation
-CVE-2023-7173  # account-creation
-CVE-2024-34471  # file-delete
-CVE-2024-36598  # file-upload (unauthenticated webshell)
-CVE-2024-48760  # file-upload
-CVE-2024-57428  # file-upload
-CVE-2024-57430  # privilege-escalation
-CVE-2024-58348  # file_upload
-CVE-2024-58349  # file_upload
-CVE-2024-25736  # dos (unauthenticated device reboot)
-CVE-2024-2624  # path-traversal (switch_personal_path, arbitrary file write/overwrite, destructive)
-CVE-2024-2358  # path-traversal to code-execution (apply_settings extensions, destructive)
-CVE-2024-1601  # sql-injection (delete_discussion, destructive mass-delete)
-CVE-2024-1646  # authentication-bypass (sensitive admin endpoints: update_software/restart_program)
-CVE-2024-34070  # stored-xss via unauth login loginname (persists in admin logs; no safe active probe)
-CVE-2024-43918  # unauth arbitrary SQL execution to RCE (WP WBW importGroup .sql upload, destructive)
-CVE-2023-49970  # authenticated blind SQLi (customer_support save_ticket subject; no safe unauth active probe)
-CVE-2024-1301   # unauth blind time-based SQLi (moni:tool j_username; no safe active probe)
-CVE-2024-25227  # auth-bypass SQLi (ABO.CMS tb_login tautology; cannot verify without bypassing auth)
-CVE-2024-24141  # sql-injection in delete-task.php task param (destructive delete endpoint; no safe active probe)
-CVE-2024-21793  # unauth blind OData injection (F5 BIG-IP Next CM api login username; char-by-char oracle, no safe active probe)
-CVE-2024-26026  # unauth blind SQLi (F5 BIG-IP Next CM api login provider_name; char-by-char oracle, no safe active probe)
-CVE-2024-44867  # path traversal via phpok tpl_set filename (admin template write path; no safe active probe)
-CVE-2024-30998  # unauth blind SQLi (phpgurukul men-salon email param; char-by-char oracle, no safe active probe)
-CVE-2023-49540  # stored XSS via transaction/save buyer_name (persists in history view; no safe active probe)
-CVE-2023-49984  # stored XSS via admin main_settings name (authenticated persist; no safe active probe)
-CVE-2008-6970   # blind SQLi via UBB.threads dosearch Words param (char-by-char oracle; no safe active probe)
-CVE-2021-42665  # login SQLi / auth-bypass (Nia Munoz login.php username; cannot verify without bypassing auth)
-CVE-2023-49547  # login SQLi auth-bypass (customer_support ajax.php action=login; boolean tautology, no error oracle)
-CVE-2024-24139  # sql-injection in delete-user.php user param (authenticated destructive delete endpoint; no safe active probe)
-CVE-2024-32369  # authenticated SQLi (HSC MailInspector mliWhiteList limit; no confirmed login flow for active probe)
-CVE-2024-37765  # authenticated blind SQLi (MachForm my_account user_admin_theme; no confirmed login flow for active probe)
-CVE-2025-2594  # account-creation
-CVE-2025-29009  # file_upload
-CVE-2025-32370  # file-upload
-CVE-2025-34112  # privesc
-CVE-2025-55912  # file-upload
-CVE-2025-57642  # file_upload
-CVE-2025-7441  # file_upload
-CVE-2026-23520  # command-injection (stored, admin-triggered)
-CVE-2026-25099  # file-upload
-CVE-2026-25232  # privilege-escalation
-CVE-2026-25643  # command-injection (destructive config write + restart)
-CVE-2026-27574  # account-creation
-CVE-2026-27636  # file_upload
-CVE-2026-28289  # file_upload
-CVE-2026-30225  # privilege-escalation
-CVE-2026-30944  # privilege-escalation
-CVE-2026-3180  # sql-injection (blind boolean, per-site nonce required)
-CVE-2026-34472  # auth-bypass (device response unverified for active)
-CVE-2026-36356  # command-injection (active runs chpasswd, destructive)
-CVE-2026-38751  # file_upload
-CVE-2026-47101  # privilege-escalation
-CVE-2026-52813  # path-traversal (org-create API, active->RCE destructive)
-CVE-2026-52832  # path-traversal (unauth file write as root, destructive)
-CVE-2026-54415  # privilege-escalation
-CVE-2026-59310  # path-traversal (syslog, non-HTTP vector)
-CVE-2026-63223  # file-upload
+CVE-2001-0089
+CVE-2001-0527
+CVE-2004-1932
+CVE-2005-4491
+CVE-2006-4875
+CVE-2006-6879
+CVE-2007-0972
+CVE-2007-3432
+CVE-2007-4527
+CVE-2008-0251
+CVE-2008-2574
+CVE-2008-3178
+CVE-2008-3362
+CVE-2008-5732
+CVE-2008-6084
+CVE-2008-6768
+CVE-2008-6769
+CVE-2009-0602
+CVE-2009-1446
+CVE-2009-1609
+CVE-2009-4140
+CVE-2010-3964
+CVE-2010-4313
+CVE-2011-4090
+CVE-2011-4449
+CVE-2012-1010
+CVE-2012-1125
+CVE-2012-3574
+CVE-2012-3811
+CVE-2012-6528
+CVE-2013-1916
+CVE-2013-2748
+CVE-2013-5962
+CVE-2013-6227
+CVE-2013-6275
+CVE-2014-10021
+CVE-2014-2088
+CVE-2014-2223
+CVE-2014-4170
+CVE-2014-4613
+CVE-2014-5460
+CVE-2015-2780
+CVE-2015-2825
+CVE-2016-10036
+CVE-2016-10258
+CVE-2016-1524
+CVE-2016-4311
+CVE-2016-8526
+CVE-2017-15276
+CVE-2017-15734
+CVE-2017-15735
+CVE-2017-16244
+CVE-2017-16524
+CVE-2017-16949
+CVE-2017-17672
+CVE-2017-17976
+CVE-2017-5594
+CVE-2017-7312
+CVE-2017-7398
+CVE-2017-7446
+CVE-2017-7620
+CVE-2017-8295
+CVE-2017-9602
+CVE-2018-1000888
+CVE-2018-10312
+CVE-2018-11442
+CVE-2018-11502
+CVE-2018-11538
+CVE-2018-11670
+CVE-2018-11671
+CVE-2018-12519
+CVE-2018-12596
+CVE-2018-12602
+CVE-2018-12603
+CVE-2018-12739
+CVE-2018-13989
+CVE-2018-15844
+CVE-2018-18760
+CVE-2018-18793
+CVE-2018-18794
+CVE-2018-18797
+CVE-2018-18799
+CVE-2018-19126
+CVE-2018-19135
+CVE-2018-19550
+CVE-2018-19829
+CVE-2018-7176
+CVE-2018-7745
+CVE-2018-8814
+CVE-2018-9926
+CVE-2019-10008
+CVE-2019-10847
+CVE-2019-12185
+CVE-2019-12922
+CVE-2019-14328
+CVE-2019-15813
+CVE-2019-16531
+CVE-2019-16893
+CVE-2019-4013
+CVE-2019-5009
+CVE-2019-6249
+CVE-2019-7440
+CVE-2019-8385
+CVE-2019-8394
+CVE-2019-9189
+CVE-2019-9623
+CVE-2019-9769
+CVE-2020-10386
+CVE-2020-14008
+CVE-2020-23342
+CVE-2020-24609
+CVE-2020-35151
+CVE-2020-5844
+CVE-2020-9758
+CVE-2021-20034
+CVE-2021-24174
+CVE-2021-24272
+CVE-2021-24545
+CVE-2021-24581
+CVE-2021-28379
+CVE-2021-28976
+CVE-2021-29460
+CVE-2021-30147
+CVE-2021-31933
+CVE-2021-36711
+CVE-2021-39608
+CVE-2021-42342
+CVE-2021-42362
+CVE-2021-44673
+CVE-2021-47753
+CVE-2021-47899
+CVE-2022-25241
+CVE-2022-31886
+CVE-2022-34128
+CVE-2022-3552
+CVE-2022-43097
+CVE-2022-48194
+CVE-2023-0455
+CVE-2023-4278
+CVE-2023-7173
+CVE-2024-34471
+CVE-2024-36598
+CVE-2024-48760
+CVE-2024-57428
+CVE-2024-57430
+CVE-2024-58348
+CVE-2024-58349
+CVE-2024-25736
+CVE-2024-2624
+CVE-2024-2358
+CVE-2024-1601
+CVE-2024-1646
+CVE-2024-34070
+CVE-2024-43918
+CVE-2023-49970
+CVE-2024-1301
+CVE-2024-25227
+CVE-2024-24141
+CVE-2024-21793
+CVE-2024-26026
+CVE-2024-44867
+CVE-2024-30998
+CVE-2023-49540
+CVE-2023-49984
+CVE-2008-6970
+CVE-2021-42665
+CVE-2023-49547
+CVE-2024-24139
+CVE-2024-32369
+CVE-2024-37765
+CVE-2025-2594
+CVE-2025-29009
+CVE-2025-32370
+CVE-2025-34112
+CVE-2025-55912
+CVE-2025-57642
+CVE-2025-7441
+CVE-2026-23520
+CVE-2026-25099
+CVE-2026-25232
+CVE-2026-25643
+CVE-2026-27574
+CVE-2026-27636
+CVE-2026-28289
+CVE-2026-30225
+CVE-2026-30944
+CVE-2026-3180
+CVE-2026-34472
+CVE-2026-36356
+CVE-2026-38751
+CVE-2026-47101
+CVE-2026-52813
+CVE-2026-52832
+CVE-2026-54415
+CVE-2026-59310
+CVE-2026-63223
+CVE-2012-1495
+CVE-2012-4959
+CVE-2012-10054
+CVE-2013-5036
+CVE-2013-6221
+CVE-2013-6810
+CVE-2013-7390
+CVE-2014-5005
+CVE-2014-6037
+CVE-2014-7226
+CVE-2014-7235
+CVE-2014-8516
+CVE-2014-9567
+CVE-2015-6922
+CVE-2015-8249
+CVE-2017-8835
+CVE-2017-9100
+CVE-2018-11523
+CVE-2018-1306
+CVE-2019-7257
+CVE-2019-11447
+CVE-2020-36847
+CVE-2020-27386
+CVE-2026-47117
+CVE-2025-46001
+CVE-2026-58480
+CVE-2026-15748
+CVE-2026-68771
+CVE-2026-42238
+CVE-2021-33990
+CVE-2024-45256
+CVE-2024-31819
+CVE-2021-40371
+CVE-2023-53962
+CVE-2024-53586
+CVE-2020-37186
+CVE-2020-36877
+CVE-2020-15929
+CVE-2020-36898
+CVE-2024-48839
+CVE-2024-48840
+CVE-2020-35370
+CVE-2020-15928
+CVE-2020-6286
+CVE-2023-2523
+CVE-2022-45359
+CVE-2021-41643
+CVE-2021-46428
+CVE-2021-46013
+CVE-2021-41644
+CVE-2021-36622
+CVE-2021-29281
+CVE-2021-36623
+CVE-2021-4455
+CVE-2021-26809
+CVE-2021-47965
+CVE-2021-47819
+CVE-2023-39115
+CVE-2023-1826
+CVE-2023-2246
+CVE-2020-28130
+CVE-2020-10224
+CVE-2020-27956
+CVE-2020-10225
+CVE-2020-23828
+CVE-2020-28140
+CVE-2020-36897
+CVE-2021-41646
+CVE-2021-45835
+CVE-2021-28294
+CVE-2021-45411
+CVE-2024-58286
+CVE-2021-27198
+CVE-2021-45040
+CVE-2022-27357
+CVE-2022-27351
+CVE-2022-40797
+CVE-2022-3436
+CVE-2023-6316
+CVE-2022-2143
+CVE-2020-11698
+CVE-2023-37152
+CVE-2023-31903
+CVE-2023-53922
+CVE-2023-53950
+CVE-2024-31777
+CVE-2024-27747
+CVE-2024-2356
+CVE-2024-8537
+CVE-2024-2361
+CVE-2024-6139
+CVE-2024-2178
+CVE-2020-36849
+CVE-2022-40471
+CVE-2024-23759
+CVE-2022-50796
+CVE-2024-5182
+CVE-2021-47900
+CVE-2020-12112
+CVE-2024-24578
+CVE-2024-5980
+CVE-2024-4320
+CVE-2024-5443
+CVE-2023-45277
+CVE-2023-45278
+CVE-2024-24398
+CVE-2024-2221
+CVE-2024-34313
+CVE-2024-8898
+CVE-2024-2362
+CVE-2024-8524
+CVE-2024-12866
+CVE-2024-10830
+CVE-2024-10902
+CVE-2024-1873
+CVE-2024-8581
+CVE-2024-5752
+CVE-2023-6015

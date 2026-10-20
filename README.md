@@ -13,38 +13,38 @@ Most signatures are generated autonomously by **ARPSyndicate's Vulnerability & E
 ## Coverage
 
 <!-- STATS:START -->
-**14,212 unique CVEs covered.** Most carry both a Suricata rule and a Nuclei template; 196 destructive or DoS CVEs are network-detection-only — a passive Suricata rule with no active Nuclei check (listed in [SURICATA_ONLY.txt](SURICATA_ONLY.txt)).
+**14,286 unique CVEs covered.** Most carry both a Suricata rule and a Nuclei template; 317 destructive or DoS CVEs are network-detection-only — a passive Suricata rule with no active Nuclei check (listed in [SURICATA_ONLY.txt](SURICATA_ONLY.txt)).
 
 | CVE year | Suricata Signatures | Nuclei Signatures |
 | --- | ---: | ---: |
 | 1999 | 6 | 6 |
 | 2000 | 19 | 19 |
 | 2001 | 23 | 21 |
-| 2002 | 73 | 78 |
-| 2003 | 69 | 72 |
+| 2002 | 78 | 78 |
+| 2003 | 72 | 72 |
 | 2004 | 187 | 186 |
 | 2005 | 538 | 537 |
-| 2006 | 1,418 | 1,422 |
-| 2007 | 1,132 | 1,146 |
-| 2008 | 1,754 | 1,774 |
-| 2009 | 803 | 823 |
-| 2010 | 677 | 685 |
-| 2011 | 181 | 186 |
-| 2012 | 311 | 327 |
-| 2013 | 220 | 223 |
-| 2014 | 327 | 334 |
-| 2015 | 227 | 233 |
-| 2016 | 158 | 160 |
-| 2017 | 392 | 392 |
-| 2018 | 569 | 562 |
-| 2019 | 409 | 413 |
-| 2020 | 511 | 532 |
-| 2021 | 732 | 714 |
-| 2022 | 699 | 693 |
-| 2023 | 724 | 717 |
-| 2024 | 816 | 791 |
-| 2025 | 526 | 519 |
-| 2026 | 471 | 451 |
+| 2006 | 1,424 | 1,422 |
+| 2007 | 1,149 | 1,146 |
+| 2008 | 1,783 | 1,774 |
+| 2009 | 827 | 823 |
+| 2010 | 687 | 685 |
+| 2011 | 187 | 185 |
+| 2012 | 330 | 322 |
+| 2013 | 227 | 218 |
+| 2014 | 336 | 324 |
+| 2015 | 232 | 228 |
+| 2016 | 162 | 157 |
+| 2017 | 398 | 381 |
+| 2018 | 577 | 548 |
+| 2019 | 411 | 392 |
+| 2020 | 541 | 515 |
+| 2021 | 758 | 719 |
+| 2022 | 718 | 703 |
+| 2023 | 748 | 728 |
+| 2024 | 857 | 800 |
+| 2025 | 529 | 521 |
+| 2026 | 484 | 459 |
 <!-- STATS:END -->
 
 ## Layout

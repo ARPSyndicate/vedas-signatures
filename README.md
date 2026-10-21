@@ -44,7 +44,7 @@ Most signatures are generated autonomously by **ARPSyndicate's Vulnerability & E
 | 2023 | 772 | 748 |
 | 2024 | 892 | 816 |
 | 2025 | 541 | 528 |
-| 2026 | 496 | 467 |
+| 2026 | 497 | 467 |
 <!-- STATS:END -->
 
 ## Layout

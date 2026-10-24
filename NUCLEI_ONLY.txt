@@ -1,0 +1,6 @@
+# Nuclei templates with intentionally NO Suricata rule: the vulnerability is only
+# confirmable actively (TLS-encrypted payloads, timing/behavioral side-channels, or
+# responses with no distinguishing on-the-wire request pattern), so a Suricata rule
+# would be pure false-positive. These are valid detections kept as host-only.
+CVE-2026-25050
+CVE-2026-2624

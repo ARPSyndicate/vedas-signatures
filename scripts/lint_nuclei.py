@@ -26,13 +26,16 @@ from vedas_common import NUCLEI_DIR, Reporter, check_layout, resolve_targets  # 
 SEVERITIES = {"info", "low", "medium", "high", "critical", "unknown"}
 PROTOCOLS = {"http", "requests", "network", "tcp", "dns", "ssl", "websocket", "whois",
              "headless", "javascript", "code", "file", "flow", "workflows"}
-# Protocols that execute arbitrary code or read the scanning host's filesystem.
+# Protocols that read the scanning host's filesystem or orchestrate multiple templates.
 FORBIDDEN_PROTOCOLS = {
-    "code": "code protocol templates execute commands on the scanner host",
     "file": "file protocol templates read the scanner host's filesystem, not the target",
     "workflows": "workflows are not accepted; submit one template per CVE",
 }
+# Allowed but flagged for review: these run on the scanner (code/js) or need a browser (headless).
+# They are permitted when http/network cannot express the check (e.g. gRPC/protobuf over TLS,
+# DOM-only XSS) — keep them targeting the scanned host and non-destructive.
 REVIEW_PROTOCOLS = {
+    "code": "code protocol runs on the scanner; ensure it targets the scanned host and is non-destructive",
     "javascript": "javascript templates run scripts on the scanner; explain why http/network is insufficient",
     "headless": "headless templates need a browser; prefer http where possible",
 }
@@ -152,6 +155,18 @@ def lint_file(path: Path, rep: Reporter, errors_only: bool) -> None:
             rep.error(path, f"'{p}:' is not accepted: {FORBIDDEN_PROTOCOLS[p]}")
         elif p in REVIEW_PROTOCOLS:
             w(f"'{p}:' needs extra maintainer review: {REVIEW_PROTOCOLS[p]}")
+    # Scanner self-compromise gate: code/javascript/headless blocks execute on the scanner
+    # host, so their contents must not harm it. Hard-fail on unambiguous host attacks.
+    if {"code", "javascript", "headless"} & set(protos):
+        try:
+            from audit_scanner_safety import local_exec_blocks, DANGER_HARD_RE
+            blk = local_exec_blocks(data.decode("utf-8", "replace"))
+            for rx, desc in DANGER_HARD_RE:
+                m = rx.search(blk)
+                if m:
+                    rep.error(path, f"scanner self-compromise risk in code/js/headless block: {desc} [{m.group(0)[:40]!r}]")
+        except Exception as exc:
+            w(f"could not run scanner-safety scan on local-exec block: {exc}")
     if doc.get("self-contained") or any(isinstance(b, dict) and b.get("self-contained")
                                         for p in protos for b in as_list(doc.get(p))):
         rep.error(path, "self-contained requests are not accepted; templates must target the scanned host")

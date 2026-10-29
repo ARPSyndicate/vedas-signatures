@@ -2,5 +2,31 @@
 # confirmable actively (TLS-encrypted payloads, timing/behavioral side-channels, or
 # responses with no distinguishing on-the-wire request pattern), so a Suricata rule
 # would be pure false-positive. These are valid detections kept as host-only.
+CVE-2026-107824
+CVE-2026-114123
 CVE-2026-25050
 CVE-2026-2624
+CVE-2026-34200
+CVE-2026-42869
+CVE-2026-49352
+CVE-2026-50561
+CVE-2026-61742
+CVE-2026-63429
+CVE-2026-53709
+CVE-2026-108372
+CVE-2026-77363
+CVE-2026-48031
+CVE-2026-77339
+CVE-2026-19490
+CVE-2026-48842
+CVE-2026-7663
+CVE-2026-1724
+CVE-2026-54735
+CVE-2026-117564
+CVE-2026-54446
+CVE-2026-12046
+CVE-2026-82291
+CVE-2026-33024
+CVE-2026-33039
+CVE-2026-2393
+CVE-2026-23515

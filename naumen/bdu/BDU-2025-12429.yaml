@@ -1,0 +1,76 @@
+id: BDU-2025-12429
+
+info:
+  name: "NaumenKMS - Stored XSS (BDU:2025-12429)"
+  author: vedas-arpsyndicate
+  severity: medium
+  description: |
+    Missing web-page structure protection in the NaumenKMS knowledge management system allows a remote attacker to execute arbitrary JavaScript. NOTE: NaumenKMS is a separate product with its own 5.x versioning and no publicly verified web fingerprint - confirm markers against a known instance before relying on this template.
+    This template extracts the Naumen marketing version and build number from the login-page
+    buildInfo object and fires only when the exposed version satisfies compare_versions
+    "<= 5.8.5". Instances that expose no version field are not flagged.
+  reference:
+    - https://www.exploit.observer/?keyword=BDU:2025-12429&match=exact
+    - https://bdu.fstec.ru/vul/2025-12429
+    - https://subdomain.center/?engine=ammonites&keyword=naumen&match=exact
+  classification:
+    cwe-id: CWE-79
+  metadata:
+    verified: false
+    bdu-id: BDU:2025-12429
+    affected: "NaumenKMS 5.8.5"
+    version-gate: 'compare_versions(version, "<= 5.8.5")'
+    product: naumenkms
+  tags: bdu,naumen,kms,xss
+
+http:
+  - method: GET
+    path:
+      - "{{BaseURL}}/kms/"
+      - "{{BaseURL}}/"
+
+    stop-at-first-match: true
+    host-redirects: true
+    max-redirects: 2
+
+    matchers-condition: and
+    matchers:
+      - type: word
+        part: body
+        words:
+          - "NaumenKMS"
+          - "Naumen KMS"
+          - "/kms/"
+        condition: or
+
+      - type: status
+        status:
+          - 200
+
+      - type: dsl
+        dsl:
+          - 'compare_versions(ver_2025_12429, "<= 5.8.5")'
+
+    extractors:
+      - type: regex
+        name: ver_2025_12429
+        part: body
+        internal: true
+        group: 1
+        regex:
+          - '"version"\s*:\s*"([0-9][0-9.]+)"'
+
+      - type: regex
+        name: naumen_version
+        part: body
+        group: 1
+        regex:
+          - '"version"\s*:\s*"([0-9][0-9.]+)"'
+
+      - type: regex
+        name: build
+        part: body
+        group: 1
+        regex:
+          - '"buildNumber"\s*:\s*"([0-9]+)"'
+          - '/sd/(?:js/login\.js|login\.css|themeSite\.css)\?v=([0-9]+)'

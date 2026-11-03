@@ -1,0 +1,77 @@
+id: BDU-2026-08548
+
+info:
+  name: "Naumen SMP - Missing-Auth RCE (BDU:2026-08548)"
+  author: vedas-arpsyndicate
+  severity: critical
+  description: |
+    Missing authentication in Naumen Service Management Platform allows an unauthenticated remote attacker to execute arbitrary code. Affected: the 4.13 line and earlier.
+    This template extracts the Naumen marketing version and build number from the login-page
+    buildInfo object and fires only when the exposed version satisfies compare_versions
+    "< 4.14". Instances that expose no version field are not flagged.
+  reference:
+    - https://www.exploit.observer/?keyword=BDU:2026-08548&match=exact
+    - https://bdu.fstec.ru/vul/2026-08548
+    - https://subdomain.center/?engine=ammonites&keyword=naumen&match=exact
+  classification:
+    cwe-id: CWE-306
+  metadata:
+    verified: true
+    bdu-id: BDU:2026-08548
+    affected: "Naumen Service Management Platform <= 4.13"
+    version-gate: 'compare_versions(version, "< 4.14")'
+    product: naumen-smp
+  tags: bdu,naumen,smp,rce
+
+http:
+  - method: GET
+    path:
+      - "{{BaseURL}}/sd/"
+      - "{{BaseURL}}/"
+
+    stop-at-first-match: true
+    host-redirects: true
+    max-redirects: 2
+
+    matchers-condition: and
+    matchers:
+      - type: word
+        part: body
+        words:
+          - "Naumen Service Desk"
+          - "Naumen Service Management Platform"
+          - "var buildInfo"
+          - "/sd/js/login.js"
+        condition: or
+
+      - type: status
+        status:
+          - 200
+
+      - type: dsl
+        dsl:
+          - 'compare_versions(ver_2026_08548, "< 4.14")'
+
+    extractors:
+      - type: regex
+        name: ver_2026_08548
+        part: body
+        internal: true
+        group: 1
+        regex:
+          - '"version"\s*:\s*"([0-9][0-9.]+)"'
+
+      - type: regex
+        name: naumen_version
+        part: body
+        group: 1
+        regex:
+          - '"version"\s*:\s*"([0-9][0-9.]+)"'
+
+      - type: regex
+        name: build
+        part: body
+        group: 1
+        regex:
+          - '"buildNumber"\s*:\s*"([0-9]+)"'
+          - '/sd/(?:js/login\.js|login\.css|themeSite\.css)\?v=([0-9]+)'
